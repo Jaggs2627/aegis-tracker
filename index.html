@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; script-src 'self';">
+  <title>Aegis Focus Tracker</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-left">
+        <h1>Aegis Focus</h1>
+        <p class="subtitle">Zero-telemetry intentional day planner</p>
+      </div>
+      <div class="stats-badge" id="taskQuotaBadge">0 / 5 Tasks</div>
+    </header>
+
+    <!-- Task Form -->
+    <section class="card form-card">
+      <h2>Plan Tomorrow's Objective</h2>
+      <form id="taskForm">
+        <div class="form-group">
+          <label for="taskTitle">Task Title</label>
+          <input type="text" id="taskTitle" placeholder="e.g., Cryptography lab assignment" maxlength="60" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="taskDuration">Allocated Time (Minutes)</label>
+            <input type="number" id="taskDuration" min="5" max="360" placeholder="e.g., 45" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phonePolicy">Phone Policy</label>
+            <select id="phonePolicy">
+              <option value="allow">📱 Phone Permitted</option>
+              <option value="block">🚫 No Phone (Zen Session)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="taskImage">The "Why" Backdrop Image</label>
+          <input type="file" id="taskImage" accept="image/*">
+          <small class="helper-text">Processed entirely in your browser; never sent to any server.</small>
+        </div>
+
+        <button type="submit" id="addBtn" class="btn primary-btn">+ Lock In Task</button>
+      </form>
+    </section>
+
+    <!-- Task Cards -->
+    <section class="tasks-section">
+      <h2>Scheduled Tasks</h2>
+      <div id="taskList" class="task-grid"></div>
+    </section>
+  </div>
+
+  <!-- Zen Focus Screen -->
+  <div id="focusOverlay" class="focus-overlay hidden">
+    <div class="focus-backdrop" id="focusBackdrop"></div>
+    <div class="focus-content">
+      <span class="focus-badge">ACTIVE ZEN PROTOCOL</span>
+      <h2 id="focusTaskTitle">Task Name</h2>
+      <div class="timer-display" id="timerDisplay">00:00</div>
+      <p class="focus-reminder">Put your phone face-down. Emergency dials remain accessible via lock screen.</p>
+      <div class="focus-actions">
+        <button id="completeFocusBtn" class="btn success-btn">Mark Completed</button>
+        <button id="exitFocusBtn" class="btn secondary-btn">Exit Early</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
